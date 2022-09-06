@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DetailPlanControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
+use App\Models\Models\DetailPlan;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,14 @@ use App\Http\Controllers\Admin\PlanController;
 
 Route::prefix('admin')
         ->group(function(){
+    /**
+     * Routes Plans       
+     */  
+      Route::get('plans/{url}/details',[DetailPlanControler::class,'index'])->name('details.plan.index');     
+
+    /**
+     * Routes Plans       
+     */        
     Route::get('plans', [PlanController::class, 'index'])->name('plans.index');
     Route::get('plans/create', [PlanController::class, 'create'])->name('plans.create');
     Route::post('plans', [PlanController::class, 'store'])->name('plans.store');
@@ -25,6 +35,10 @@ Route::prefix('admin')
     Route::get('plans/{url}/edit', [PlanController::class, 'edit'])->name('plans.edit');
     Route::delete('plans/{url}', [PlanController::class, 'delete'])->name('plans.delete');
     Route::get('/', [PlanController::class, 'index'])->name('admin.index');
+
+    /**
+     * Home Dashboard
+     */
 });
 
 
